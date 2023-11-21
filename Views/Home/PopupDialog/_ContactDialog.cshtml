@@ -1,0 +1,44 @@
+﻿@model Contact
+@{
+    Layout = "/Views/Home/PopupDialog/_PopupLayout.cshtml";
+}
+
+<div class="popup contact-dialog">
+    <h3 class="title contact-dialog__title">@ViewBag.PopupTitle</h3>
+    <form class="contact-dialog__form">
+        @Html.AntiForgeryToken()
+        <div class="contact-dialog__input-group">
+            <label asp-for="Name"></label>
+            <input class="contact-dialog__input" asp-for="Name" minlength="2" validate-no-white-spaces="true" required />
+            <label class="error error-label" for="Name"></label>
+        </div>
+        <div class="contact-dialog__input-group">
+            <label asp-for="MobilePhone"></label>
+            <input class="contact-dialog__input" type="tel" placeholder="+375292546310" asp-for="MobilePhone" pattern="[\+]?[0-9]{3}[0-9]{3}[0-9]{4,6}" required />
+            <label class="error error-label" for="MobilePhone"></label>
+        </div>
+        <div class="contact-dialog__input-group">
+            <label asp-for="JobTitle"></label>
+            <input class="contact-dialog__input" asp-for="JobTitle" validate-no-white-spaces="true" />
+            <label class="error error-label" for="JobTitle"></label>
+        </div>
+        <div class="contact-dialog__input-group">
+            <label asp-for="BirthDate"></label>
+            <input class="contact-dialog__input" type="date" value="@((Model == null ? DateTime.Now : Model.BirthDate).ToString("yyyy-MM-dd"))" asp-for="BirthDate" required />
+            <label class="error error-label" for="BirthDate"></label>
+        </div>
+    </form>
+    <div class="contact-dialog__buttons">
+        @if (Model == null)
+        {
+            <button class="button contact-dialog__button contact-dialog__button-create">Create</button>
+        }
+        else
+        {
+            <input asp-for="Id" type="hidden" />
+            <button class="button contact-dialog__button contact-dialog__button-confirm">Confirm</button>
+        }
+
+        <button class="button contact-dialog__button contact-dialog__button-cancel">Cancel</button>
+    </div>
+</div>

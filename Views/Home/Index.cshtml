@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Contact>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/icons8-contacts-30.png">
+    <title>Contacts Application</title>
+</head>
+<body>
+    <div class="body-wrapper">
+        <main>
+            <div class="contacts-app__popup"></div>
+            <div class="main-wrapper">
+                <h2 class="title contacts-app__title">Contacts List</h2>
+                <button class="button contacts-app__button-add">Add contact</button>
+                <table class="contacts-list contacts-app__contacts-list">
+                    <thead class="contacts-list__header">
+                        <tr>
+                            <th class="contacts-list__header-element contacts-list__header-name">@Html.DisplayNameFor(model=> model.First().Name)</th>
+                            <th class="contacts-list__header-element contacts-list__header-mobile-phone">@Html.DisplayNameFor(model=> model.First().MobilePhone)</th>
+                            <th class="contacts-list__header-element contacts-list__header-job-title">@Html.DisplayNameFor(model=> model.First().JobTitle)</th>
+                            <th class="contacts-list__header-element contacts-list__header-birth-date">@Html.DisplayNameFor(model=> model.First().BirthDate)</th>
+                            <th class="contacts-list__header-element contacts-list__header-actions"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="contacts-list__records">
+                        <partial name="_ContactsListRecords" model="Model" />
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script src="/lib/jquery/jquery-3.7.1.min.js"></script>
+    <script src="/lib/jquery/validation/jquery.validate.min.js"></script>
+    <script src="/lib/jquery/validation/additional-methods.min.js"></script>
+    <script type="module" src="/js/index.js"></script>
+</body>
+</html>

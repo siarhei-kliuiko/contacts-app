@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Contact>
+
+@Html.AntiForgeryToken()
+@foreach (var contact in Model)
+{
+    <tr class="contact-info">
+        <td class="contact-info__element contact-info__name">@contact.Name</td>
+        <td class="contact-info__element contact-info__mobile-phone">@contact.MobilePhone</td>
+        <td class="contact-info__element contact-info__job-title">@contact.JobTitle</td>
+        <td class="contact-info__element contact-info__birth-date">@contact.BirthDate.ToShortDateString()</td>
+        <td class="contact-info__element contact-info__buttons">
+            <input asp-for="@contact.Id" type="hidden"/>
+            <button class="button contact-info__button contact-info__button-edit">Edit</button>
+            <button class="button contact-info__button contact-info__button-delete">Delete</button>
+        </td>
+    </tr>
+}
